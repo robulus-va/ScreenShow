@@ -56,20 +56,20 @@ def getImage(outputWidth:int):
     ''' returns a buff of screen data '''
 
     # Capture PC screen
-    eachImage = ImageGrab.grab().convert("RGB")
+    screenshot = ImageGrab.grab().convert("RGB")
 
-    cursor_overlay.overlay(eachImage)
+    cursor_overlay.overlay(screenshot)
 
-    eachImage_scaled = ImageOps.contain(eachImage, (outputWidth // 2, outputHeight))
+    # eachImage_scaled = ImageOps.contain(eachImage, (outputWidth // 2, outputHeight))
 
-    output_image = Image.new("RGB", (outputWidth, outputHeight), "black")
+    # output_image = Image.new("RGB", (outputWidth, outputHeight), "black")
 
-    output_image.paste(eachImage_scaled, (0                , (outputHeight - eachImage_scaled.height) // 2))
-    output_image.paste(eachImage_scaled, (outputWidth // 2, (outputHeight - eachImage_scaled.height) // 2))
+    # output_image.paste(eachImage_scaled, (0                , (outputHeight - eachImage_scaled.height) // 2))
+    # output_image.paste(eachImage_scaled, (outputWidth // 2, (outputHeight - eachImage_scaled.height) // 2))
 
     # Compress to JPEG
     buffer = io.BytesIO()
-    output_image.save(buffer, format='JPEG', quality=75)
+    screenshot.save(buffer, format='JPEG', quality=75)
 
     return buffer.getvalue()
 #-------------------------------------------------------------------------------
