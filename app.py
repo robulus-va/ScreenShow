@@ -58,6 +58,11 @@ def getImage(outputWidth:int):
     # Capture PC screen
     screenshot = ImageGrab.grab().convert("RGB")
 
+    screenWidth, screenHeight = screenshot.size
+
+    # TODO: make this a parameter to be set at runtime
+    screenshot = ImageOps.contain(screenshot, (screenWidth // 2, screenHeight // 2))
+
     cursor_overlay.overlay(screenshot)
 
     # eachImage_scaled = ImageOps.contain(eachImage, (outputWidth // 2, outputHeight))
